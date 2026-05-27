@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MStreet Ventures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-2: #4a4a46;
+    --ink-3: #8a8a84;
+    --ink-4: #c2c2ba;
+    --paper: #faf9f6;
+    --rule: #e4e3de;
+    --green-bg: #e8f2e4;
+    --green-text: #2d6b24;
+    --blue-bg: #e4eef8;
+    --blue-text: #1a4e82;
+    --amber-bg: #fdf0d8;
+    --amber-text: #7a4f0a;
+    --gray-bg: #f0efeb;
+    --gray-text: #5a5a55;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* NAV */
+  nav {
+    border-bottom: 0.5px solid var(--rule);
+    padding: 1.25rem 0;
+    position: sticky;
+    top: 0;
+    background: rgba(250,249,246,0.96);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--ink-3);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 0 3.5rem;
+    border-bottom: 0.5px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+  .hero-left h1 {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-left p {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.75;
+    max-width: 440px;
+  }
+  .hero-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 0.5px solid var(--rule);
+  }
+  .stat-cell {
+    background: var(--paper);
+    padding: 1.5rem;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* THESIS */
+  .thesis-section {
+    padding: 3rem 0;
+    border-bottom: 0.5px solid var(--rule);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+  }
+  .thesis-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-top: 3px;
+  }
+  .thesis-body p {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .thesis-body p:last-child { margin-bottom: 0; }
+  .thesis-body strong { color: var(--ink); font-weight: 500; }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .pillar {
+    border-left: 2px solid var(--rule);
+    padding-left: 12px;
+  }
+  .pillar-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .pillar-text {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+
+  /* OPERATE */
+  .operate-section {
+    padding: 3rem 0;
+    border-bottom: 0.5px solid var(--rule);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+  }
+  .operate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .op-block h4 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 0.75rem;
+  }
+  .step {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .step-n {
+    font-size: 11px;
+    color: var(--ink-4);
+    font-weight: 500;
+    min-width: 16px;
+    margin-top: 1px;
+  }
+  .step-t {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .coinv-list {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.8;
+  }
+  .team-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pill {
+    font-size: 12px;
+    background: var(--gray-bg);
+    color: var(--ink-2);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .pill-sub {
+    font-size: 10px;
+    color: var(--ink-3);
+    margin-left: 4px;
+  }
+
+  /* PORTFOLIO TABLE */
+  .portfolio-section {
+    padding: 3rem 0;
+  }
+  .portfolio-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .portfolio-header h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .portfolio-header span {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+
+  /* Filter tabs */
+  .filter-row {
+    display: flex;
+    gap: 1px;
+    margin-bottom: 2rem;
+    background: var(--rule);
+    width: fit-content;
+    border: 0.5px solid var(--rule);
+  }
+  .filter-btn {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    background: var(--paper);
+    border: none;
+    cursor: pointer;
+    color: var(--ink-3);
+  }
+  .filter-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Table */
+  .inv-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .inv-table thead tr {
+    border-bottom: 0.5px solid var(--ink);
+  }
+  .inv-table th {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding: 0 12px 10px 0;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .inv-table td {
+    padding: 18px 12px 18px 0;
+    border-bottom: 0.5px solid var(--rule);
+    vertical-align: top;
+  }
+  .inv-table tr.hidden { display: none; }
+
+  /* Logo cell */
+  .logo-cell {
+    width: 72px;
+  }
+  .logo-wrap {
+    width: 52px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 0.5px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 4px;
+  }
+  .logo-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .logo-initials {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+  }
+
+  /* Company name cell */
+  .co-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+    white-space: nowrap;
+  }
+  .co-founders {
+    font-size: 11px;
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+  .name-cell { min-width: 130px; }
+
+  /* Description */
+  .desc-cell {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 240px;
+    min-width: 180px;
+  }
+
+  /* Meta */
+  .meta-cell { min-width: 110px; }
+  .meta-loc {
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .meta-sector {
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* Year */
+  .year-cell {
+    font-size: 12px;
+    color: var(--ink-2);
+    white-space: nowrap;
+    min-width: 80px;
+  }
+  .stage-lbl {
+    font-size: 10px;
+    color: var(--ink-3);
+    margin-top: 2px;
+  }
+
+  /* Status */
+  .status-cell { min-width: 100px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 4px;
+  }
+  .b-active { background: var(--green-bg); color: var(--green-text); }
+  .b-exited { background: var(--blue-bg); color: var(--blue-text); }
+  .b-developing { background: var(--amber-bg); color: var(--amber-text); }
+  .b-closed { background: var(--gray-bg); color: var(--gray-text); }
+  .yc-dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: #FF6600;
+    border-radius: 3px;
+    font-size: 8px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    line-height: 14px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* News */
+  .news-cell {
+    min-width: 200px;
+    max-width: 240px;
+  }
+  .news-item {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+    align-items: flex-start;
+    font-size: 11px;
+    color: var(--ink-2);
+    line-height: 1.45;
+  }
+  .news-item:last-child { margin-bottom: 0; }
+  .news-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ink-3);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  /* MISC */
+  .misc-section {
+    padding: 2.5rem 0 3rem;
+    border-top: 0.5px solid var(--rule);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+  }
+  .misc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .misc-col h4 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 0.6rem;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .misc-col ul { list-style: none; }
+  .misc-col li {
+    font-size: 13px;
+    color: var(--ink-2);
+    padding: 3px 0;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--rule);
+    padding: 2.5rem 0;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .disclaimer {
+    font-size: 11px;
+    color: var(--ink-3);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+  .contact-block {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.8;
+  }
+  .contact-block a { color: var(--ink-2); }
+
+  @media (max-width: 760px) {
+    .hero, .thesis-section, .operate-section, .misc-section { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hero { padding: 2.5rem 0 2rem; }
+    .hero-left h1 { font-size: 28px; }
+    .operate-grid, .misc-grid, .pillars { grid-template-columns: 1fr 1fr; }
+    .inv-table { font-size: 12px; }
+    .news-cell, .desc-cell { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="page-wrap">
+    <div class="nav-inner">
+      <span class="wordmark">MStreet Ventures</span>
+      <ul class="nav-links">
+        <li><a href="#thesis">Thesis</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="page-wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Backing founders and scientists building the next half-century.</h1>
+        <p>MStreet Ventures is an investing syndicate writing pre-seed and seed checks into diverse founders in the US and across Africa — and into scientists commercializing breakthrough ideas.</p>
+      </div>
+      <div class="hero-right">
+        <div class="stat-cell">
+          <div class="stat-num">12+</div>
+          <div class="stat-lbl">Portfolio companies</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">$1M+</div>
+          <div class="stat-lbl">Capital deployed</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">$40k–$150k</div>
+          <div class="stat-lbl">Check size</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">Est. 2020</div>
+          <div class="stat-lbl">Syndicate</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THESIS -->
+    <section class="thesis-section" id="thesis">
+      <div class="thesis-label">Thesis</div>
+      <div class="thesis-body">
+        <p>We target <strong>5% ownership at Pre-seed and Seed</strong> with valuations of $1M–$5M, syndicating deals into $40k–$150k checks across 5–15 people. Minimum check size is $5k.</p>
+        <p>We support ideas that violate normative ways of thinking, are steeped in scientific evidence, and provide a clear vision of the world to come — especially from <strong>diverse founders in the US and across Africa</strong>, and scientists commercializing breakthrough research. Our investing thesis is linked to the long-horizon framework at <a href="https://tgafrican.com" style="color: var(--ink-2);">tgafrican.com</a>.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-title">Enhanced empathy</div>
+            <div class="pillar-text">Biotech, neuroscience, behavioral economics reducing bias and injustice</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Science + lived experience</div>
+            <div class="pillar-text">Founders integrating objective knowledge with human experience</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Enhanced productivity</div>
+            <div class="pillar-text">Future of work, wearables, skill-based credentialing and education</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Radical democratization</div>
+            <div class="pillar-text">Intergenerational access to wealth, power, and knowledge</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE WORK + TEAM -->
+    <section class="operate-section" id="team">
+      <div class="thesis-label">Process &amp; Team</div>
+      <div>
+        <div class="operate-grid">
+          <div class="op-block">
+            <h4>How we work</h4>
+            <div class="step"><span class="step-n">1</span><span class="step-t">Introduce yourself to any of our partners</span></div>
+            <div class="step"><span class="step-n">2</span><span class="step-t">1-hour call: 40 min pitch + Q&amp;A, 20 min deliberation</span></div>
+            <div class="step"><span class="step-n">3</span><span class="step-t">We confirm quickly and always give clear, actionable feedback</span></div>
+          </div>
+          <div class="op-block">
+            <h4>Co-investors</h4>
+            <div class="coinv-list">TechStars · Future Africa · 4DX Ventures · Oui Capital<br><br>3 portfolio companies have raised $1M+ in follow-on funding from institutional VCs.</div>
+          </div>
+          <div class="op-block">
+            <h4>Team</h4>
+            <div class="team-pills">
+              <span class="pill">Bunmi Otegbade</span>
+              <span class="pill">Diran Otegbade</span>
+              <span class="pill">Tomiwa Igun</span>
+              <span class="pill">Ify Ogo<span class="pill-sub">Legal</span></span>
+              <span class="pill">Toni Oki<span class="pill-sub">Expert Partner</span></span>
+              <span class="pill">Tola Ariyo<span class="pill-sub">Legal</span></span>
+              <span class="pill">Alice Okeniyi<span class="pill-sub">Fintech</span></span>
+              <span class="pill">Dayo Fadelu<span class="pill-sub">Life Sciences</span></span>
+              <span class="pill">+20 Limited Partners</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio-section" id="portfolio">
+      <div class="portfolio-header">
+        <h2>Portfolio</h2>
+        <span>2020–2022 · Pre-seed &amp; Seed</span>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
+        <button class="filter-btn" onclick="filterTable('active', this)">Active</button>
+        <button class="filter-btn" onclick="filterTable('developing', this)">Developing</button>
+        <button class="filter-btn" onclick="filterTable('exited', this)">Exited</button>
+      </div>
+
+      <table class="inv-table">
+        <thead>
+          <tr>
+            <th style="width:72px"></th>
+            <th>Company</th>
+            <th>Why we invested</th>
+            <th>Location</th>
+            <th>Year</th>
+            <th>Status</th>
+            <th>Recent news</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- CURVE BIOSCIENCES -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/curvebiosciences.com" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Curve Biosciences">
+                <span class="logo-initials" style="display:none">CB</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Curve Biosciences</div>
+              <div class="co-founders">Ritish Patnaik, Shan X. Wang</div>
+            </td>
+            <td class="desc-cell">Genome-sequencing to unlock new drivers of cancer. Compelling intersection of biotech and data mining; founders with deep Stanford-rooted scientific pedigree.</td>
+            <td class="meta-cell"><div class="meta-loc">Dallas, TX</div><div class="meta-sector">Biotech · Data Mining</div></td>
+            <td class="year-cell">Jan 2022<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Raised $40M (Oct 2025) led by Luma Group to advance "Whole Body Intelligence" chronic disease blood tests</div></div>
+              <div class="news-item"><div class="news-dot"></div><div>Received $11M grant from Cancer Prevention &amp; Research Institution of Texas in 2024; planning Series B for 2026</div></div>
+            </td>
+          </tr>
+
+          <!-- NDOVU -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/ndovu.co" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Ndovu">
+                <span class="logo-initials" style="display:none">ND</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Ndovu</div>
+              <div class="co-founders">Radhika Bhachu, Ro Nyangeri</div>
+            </td>
+            <td class="desc-cell">Micro-investment access to global financial markets for everyday African consumers. Radical democratization of wealth-building tools in Kenya.</td>
+            <td class="meta-cell"><div class="meta-loc">Nairobi, Kenya</div><div class="meta-sector">Fintech · Wealthtech</div></td>
+            <td class="year-cell">Nov 2020<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Launched CMA-approved Money Market Fund (Oct 2024) delivering 13% annual returns; 200k+ users, $10.5M AUM</div></div>
+              <div class="news-item"><div class="news-dot"></div><div>Now holds fund management licenses in Kenya, Rwanda and Uganda; first fintech with Virtual Assets Provider license in Kenya (Nov 2025)</div></div>
+            </td>
+          </tr>
+
+          <!-- TERMII -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/termii.com" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Termii">
+                <span class="logo-initials" style="display:none">TM</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Termii <span class="yc-dot">Y</span></div>
+              <div class="co-founders">Emmanuel Gbolade, Ayomide Awe</div>
+            </td>
+            <td class="desc-cell">Multi-channel communications infrastructure for African businesses. Critical API layer serving 500+ fintechs before this market was crowded.</td>
+            <td class="meta-cell"><div class="meta-loc">Lagos, Nigeria</div><div class="meta-sector">Communications · CPaaS</div></td>
+            <td class="year-cell">Aug 2020<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Ranked #10 on FT Africa's Fastest-Growing Companies 2025; #1 in Media &amp; Telecoms category</div></div>
+              <div class="news-item"><div class="news-dot"></div><div>Raised $3.65M Series A (Jun 2023); now processes 2 billion customer interactions annually across 5 countries</div></div>
+            </td>
+          </tr>
+
+          <!-- YEMAACHI -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/yemaachi.com" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Yemaachi">
+                <span class="logo-initials" style="display:none">YB</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Yemaachi Biotech <span class="yc-dot">Y</span></div>
+              <div class="co-founders">Yaw Bediako</div>
+            </td>
+            <td class="desc-cell">Genome sequencing to improve cancer detection using African genetic data. Rare combination of scientific rigor and health equity mission rarely seen at pre-seed.</td>
+            <td class="meta-cell"><div class="meta-loc">Accra, Ghana</div><div class="meta-sector">Biotech · Immunogenomics</div></td>
+            <td class="year-cell">May 2021<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Named recipient of $25M Cancer Grand Challenges award (2024) as part of Team SAMBAI — funded by Cancer Research UK and NCI</div></div>
+              <div class="news-item"><div class="news-dot"></div><div>Launched African Cancer Atlas in partnership with Roche; Gates Foundation grant awarded 2025</div></div>
+            </td>
+          </tr>
+
+          <!-- BIG WOLF -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/bigwolfgames.com" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Big Wolf">
+                <span class="logo-initials" style="display:none">BW</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Big Wolf <span class="yc-dot">Y</span></div>
+              <div class="co-founders">Akintunde Maiyegun</div>
+            </td>
+            <td class="desc-cell">Game developer and publisher building culturally resonant content for African and diaspora audiences. Early bet on African gaming reaching global markets.</td>
+            <td class="meta-cell"><div class="meta-loc">Bay Area, CA</div><div class="meta-sector">Gaming · Culture · Publishing</div></td>
+            <td class="year-cell">Jan 2021<div class="stage-lbl">Seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Continuing to develop and publish titles; Africa gaming market projected to reach $3B by 2026</div></div>
+            </td>
+          </tr>
+
+          <!-- SUGAR -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/sugarapp.com" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Sugar">
+                <span class="logo-initials" style="display:none">SG</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Sugar</div>
+              <div class="co-founders">Fatima Dicko</div>
+            </td>
+            <td class="desc-cell">Residential tech for cities — platform for apartment managers to build community. Mali-born founder with a Columbia + Stanford background tackling US housing friction.</td>
+            <td class="meta-cell"><div class="meta-loc">Bay Area, CA</div><div class="meta-sector">PropTech · Real Estate</div></td>
+            <td class="year-cell">Jan 2021<div class="stage-lbl">Seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Raised $2.5M Seed (2021); Fatima Dicko now also Product Manager at Meta while continuing as founder</div></div>
+              <div class="news-item"><div class="news-dot"></div><div>Named to Forbes Next 1000 and Inc. 18 Inspiring Women to Watch</div></div>
+            </td>
+          </tr>
+
+          <!-- KYSHI -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/kyshi.co" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Kyshi">
+                <span class="logo-initials" style="display:none">KY</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Kyshi</div>
+              <div class="co-founders">Ayo Akindele</div>
+            </td>
+            <td class="desc-cell">Neo-bank for Africans enabling cross-border transfers between the UK, US and 20+ African countries. P2P money swap model with zero setup fees — a real gap in diaspora banking.</td>
+            <td class="meta-cell"><div class="meta-loc">Nigeria / UK</div><div class="meta-sector">Fintech · Remittances</div></td>
+            <td class="year-cell">2021<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Operating as diaspora-focused neobank; cross-border payment flows projected to reach $290T by 2030</div></div>
+            </td>
+          </tr>
+
+          <!-- FLUNA -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/fluna.co" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Fluna">
+                <span class="logo-initials" style="display:none">FL</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Fluna</div>
+            </td>
+            <td class="desc-cell">B2B trade finance platform connecting African agricultural exporters to global markets. Addresses the chronic gap in export financing and market access for African producers.</td>
+            <td class="meta-cell"><div class="meta-loc">Africa</div><div class="meta-sector">Trade Finance · Agri</div></td>
+            <td class="year-cell">2021<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Facilitated over $40M in trade in 2024; connecting African exporters to premium global markets including organic and non-GMO buyers</div></div>
+              <div class="news-item"><div class="news-dot"></div><div>Launched Fluna Academy in 2025 for training and resources for African exporters</div></div>
+            </td>
+          </tr>
+
+          <!-- TORCHE -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/torche.co" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Torche">
+                <span class="logo-initials" style="display:none">TC</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Torche</div>
+            </td>
+            <td class="desc-cell">Education and skills credentialing platform. Invested in the thesis that skill-based credentials will reshape hiring and professional advancement across emerging markets.</td>
+            <td class="meta-cell"><div class="meta-loc">Africa / US</div><div class="meta-sector">EdTech · Credentialing</div></td>
+            <td class="year-cell">2021<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Operating; skills-based hiring continues rapid adoption globally as degree-first credentials decline</div></div>
+            </td>
+          </tr>
+
+          <!-- TRUSTIBLE -->
+          <tr data-status="active">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/trustible.ai" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Trustible">
+                <span class="logo-initials" style="display:none">TR</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Trustible</div>
+            </td>
+            <td class="desc-cell">AI governance platform centralizing AI inventory, risk management, and regulatory compliance for enterprises. Timely bet as AI regulation emerged globally.</td>
+            <td class="meta-cell"><div class="meta-loc">Arlington, VA</div><div class="meta-sector">AI Governance · GovTech</div></td>
+            <td class="year-cell">Dec 2022<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Raised $4.6M (Jul 2025) bringing total to $6.35M; launched joint initiative with Leidos for AI governance at national security scale (Feb 2026)</div></div>
+              <div class="news-item"><div class="news-dot"></div><div>Growing rapidly as EU AI Act and US executive orders drive enterprise demand for AI compliance tooling</div></div>
+            </td>
+          </tr>
+
+          <!-- LAZERPAY — closed/developing -->
+          <tr data-status="developing">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/lazerpay.io" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="LazerPay">
+                <span class="logo-initials" style="display:none">LP</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">LazerPay</div>
+            </td>
+            <td class="desc-cell">Crypto payment infrastructure for African businesses. Early mover in stablecoin-based payments for merchants across the continent.</td>
+            <td class="meta-cell"><div class="meta-loc">Nigeria</div><div class="meta-sector">Fintech · Crypto</div></td>
+            <td class="year-cell">2021<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-closed">Closed</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Operations ceased 2023; regulatory headwinds and crypto market contraction made the path difficult in Nigeria</div></div>
+            </td>
+          </tr>
+
+          <!-- KNOMAD -->
+          <tr data-status="developing">
+            <td class="logo-cell">
+              <div class="logo-wrap">
+                <img src="https://logo.clearbit.com/knomad.io" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Knomad">
+                <span class="logo-initials" style="display:none">KN</span>
+              </div>
+            </td>
+            <td class="name-cell">
+              <div class="co-name">Knomad</div>
+            </td>
+            <td class="desc-cell">Professional networking and talent marketplace for African knowledge workers. Bet on data-rich professional identity in emerging markets.</td>
+            <td class="meta-cell"><div class="meta-loc">Africa / US</div><div class="meta-sector">Future of Work · Talent</div></td>
+            <td class="year-cell">2021<div class="stage-lbl">Pre-seed</div></td>
+            <td class="status-cell"><span class="badge b-developing">Developing</span></td>
+            <td class="news-cell">
+              <div class="news-item"><div class="news-dot"></div><div>Ongoing development; African professional talent platforms are a growing category with global demand</div></div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </section>
+
+    <!-- MISC -->
+    <section class="misc-section">
+      <div class="thesis-label">Also on our radar</div>
+      <div class="misc-grid">
+        <div class="misc-col">
+          <h4>Developing</h4>
+          <ul>
+            <li>Kwame.ai</li>
+            <li>Whipik</li>
+          </ul>
+        </div>
+        <div class="misc-col">
+          <h4>Missed out on</h4>
+          <ul>
+            <li>MarketForce</li>
+            <li>AfriEx</li>
+          </ul>
+        </div>
+        <div class="misc-col">
+          <h4>We invest in</h4>
+          <ul>
+            <li>Pre-seed &amp; Seed</li>
+            <li>Diverse US founders</li>
+            <li>African startups</li>
+            <li>Scientists &amp; researchers</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end page-wrap -->
+</main>
+
+<footer id="contact">
+  <div class="page-wrap">
+    <div class="footer-inner">
+      <p class="disclaimer">MStreet Ventures is a syndicate of private individual investors. We are not a licensed investment advisor or registered fund. Co-investments have included institutional partners such as TechStars, Future Africa, 4DX Ventures, and Oui Capital. Nothing on this page constitutes an offer or solicitation to invest. Portfolio information is provided for reference and may be updated as companies evolve.</p>
+      <div class="contact-block">
+        <strong style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:4px">Get in touch</strong>
+        <a href="mailto:bunmi@mstreev.com">bunmi@mstreev.com</a><br>
+        <a href="https://twitter.com/bunmiotegbade">@bunmiotegbade</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function filterTable(status, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.inv-table tbody tr').forEach(row => {
+    if (status === 'all') {
+      row.classList.remove('hidden');
+    } else {
+      const s = row.dataset.status;
+      row.classList.toggle('hidden', s !== status);
+    }
+  });
+}
+</script>
+</body>
+</html>

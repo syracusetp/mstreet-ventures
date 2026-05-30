@@ -499,8 +499,66 @@
     .hero { padding: 2.5rem 0 2rem; }
     .hero-left h1 { font-size: 28px; }
     .operate-grid, .misc-grid, .pillars { grid-template-columns: 1fr 1fr; }
-    .inv-table { font-size: 12px; }
-    .news-cell, .desc-cell { display: none; }
+    .hero-right { grid-template-columns: 1fr 1fr; }
+    .page-wrap { padding: 0 1.25rem; }
+    nav .nav-links { gap: 1rem; }
+    nav .nav-links a { font-size: 11px; }
+
+    /* Hide desktop table on mobile */
+    .inv-table, .inv-table thead, .inv-table tbody, .inv-table tr, .inv-table th, .inv-table td { display: none !important; }
+
+    /* Mobile card list */
+    .mobile-cards { display: flex !important; flex-direction: column; }
+    .mobile-card {
+      padding: 1.25rem 0;
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .mobile-card.hidden { display: none !important; }
+    .mc-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .mc-logo {
+      width: 44px;
+      height: 32px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 0.5px solid var(--rule);
+      border-radius: 5px;
+      overflow: hidden;
+      padding: 3px;
+    }
+    .mc-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .mc-logo-initials { font-size: 10px; font-weight: 500; color: var(--ink-3); }
+    .mc-name-block { flex: 1; min-width: 0; }
+    .mc-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.3; margin-bottom: 2px; }
+    .mc-founders { font-size: 11px; color: var(--ink-3); line-height: 1.4; }
+    .mc-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+    .mc-year { font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+    .mc-meta { font-size: 11px; color: var(--ink-3); margin-bottom: 6px; line-height: 1.4; }
+    .mc-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 3px;
+      margin-top: 10px;
+    }
+    .mc-desc { font-size: 12px; color: var(--ink-2); line-height: 1.6; }
+    .mc-news { display: flex; flex-direction: column; gap: 5px; }
+    .mc-news-item { display: flex; gap: 6px; align-items: flex-start; font-size: 11px; color: var(--ink-2); line-height: 1.45; }
+    .mc-news-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-3); margin-top: 5px; flex-shrink: 0; }
+  }
+
+  /* Hide mobile cards on desktop */
+  @media (min-width: 761px) {
+    .mobile-cards { display: none; }
   }
 </style>
 </head>
@@ -589,7 +647,7 @@
           </div>
           <div class="op-block">
             <h4>Co-investors</h4>
-            <div class="coinv-list">TechStars · Future Africa · 4DX Ventures · Oui Capital<br><br>3 portfolio companies have raised $1M+ in follow-on funding from institutional VCs.</div>
+            <div class="coinv-list">TechStars · Future Africa · 4DX Ventures · Oui Capital · V8 Capital<br><br>50% of portcos have raised $2M+ in follow-on funding from institutional VCs.</div>
           </div>
           <div class="op-block">
             <h4>Partners</h4>
@@ -601,11 +659,11 @@
             </div>
             <h4>Expert Advisors</h4>
             <div class="team-pills">
-              <span class="pill">Ify Ogo<span class="pill-sub">Legal</span></span>
-              <span class="pill">Toni Oki<span class="pill-sub">Infrastructure</span></span>
-              <span class="pill">Tola Ariyo<span class="pill-sub">Legal</span></span>
               <span class="pill">Alice Okeniyi<span class="pill-sub">Fintech</span></span>
               <span class="pill">Dayo Fadelu<span class="pill-sub">Life Sciences</span></span>
+              <span class="pill">Ify Ogo<span class="pill-sub">Legal</span></span>
+              <span class="pill">Tola Ariyo<span class="pill-sub">Legal</span></span>
+              <span class="pill">Toni Oki<span class="pill-sub">Infrastructure</span></span>
             </div>
           </div>
         </div>
@@ -829,7 +887,7 @@
             <td class="desc-cell">Lagos-based film production company. Investment in their feature film <em>Beyond the Aisle</em> — backing African creative economy and narrative infrastructure, not just tech.</td>
             <td class="meta-cell"><div class="meta-loc">Lagos, Nigeria</div><div class="meta-sector">Film · Creative Economy</div></td>
             <td class="year-cell">2021<div class="stage-lbl">Film investment</div></td>
-            <td class="status-cell"><span class="badge b-exited">Exited</span></td>
+            <td class="status-cell"><span class="badge b-active">Active</span></td>
             <td class="news-cell">
               <div class="news-item"><div class="news-dot"></div><div>Produced <em>Beyond the Aisle</em> — part of a growing wave of Nigerian-produced features finding distribution across African and diaspora markets</div></div>
             </td>
@@ -870,7 +928,7 @@
           <!-- TORCHE -->
           <tr data-status="closed">
             <td class="logo-cell"><div class="logo-wrap"><img src="https://logo.clearbit.com/torche.co" onerror="this.style.display='none';this.parentNode.querySelector('.logo-initials').style.display='block'" alt="Torche"><span class="logo-initials" style="display:none">TC</span></div></td>
-            <td class="name-cell"><div class="co-name">Torche</div><div class="co-founders">Sisan Dorsu, Gbenga Oni, Fawaz Abaniwonda</div></td>
+            <td class="name-cell"><div class="co-name">Torche</div><div class="co-founders">Sisan Dorsu</div></td>
             <td class="desc-cell">Biometric payments for Africa — enabling transactions via face and fingerprint, removing card and PIN barriers for the unbanked. Female-led; Techstars NYC 2022 cohort.</td>
             <td class="meta-cell"><div class="meta-loc">Lagos, Nigeria</div><div class="meta-sector">Fintech · Biometrics</div></td>
             <td class="year-cell">2021<div class="stage-lbl">Pre-seed</div></td>
@@ -908,6 +966,145 @@
 
         </tbody>
       </table>
+
+      <!-- MOBILE CARDS (shown only on mobile via CSS) -->
+      <div class="mobile-cards" style="display:none">
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/curvebiosciences.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">CB</span></div><div class="mc-name-block"><div class="mc-name">Curve Biosciences</div><div class="mc-founders">Ritish Patnaik, Shan X. Wang</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">Jan 2022 · Pre-seed</span></div></div>
+          <div class="mc-meta">Dallas, TX · Biotech · Data Mining</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Genome-sequencing to unlock new drivers of cancer. Compelling intersection of biotech and data mining; founders with deep Stanford-rooted scientific pedigree.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Raised $40M (Oct 2025) led by Luma Group to advance "Whole Body Intelligence" chronic disease blood tests</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>Received $11M grant from Cancer Prevention &amp; Research Institution of Texas in 2024; planning Series B for 2026</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/yemaachi.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">YB</span></div><div class="mc-name-block"><div class="mc-name">Yemaachi Biotech <span class="yc-dot">Y</span></div><div class="mc-founders">Yaw Bediako</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">May 2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Accra, Ghana · Biotech · Immunogenomics</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Genome sequencing to improve cancer detection using African genetic data. Rare combination of scientific rigor and health equity mission rarely seen at pre-seed.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Named recipient of $25M Cancer Grand Challenges award (2024) as part of Team SAMBAI</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>Launched African Cancer Atlas in partnership with Roche; Gates Foundation grant awarded 2025</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/trustible.ai" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">TR</span></div><div class="mc-name-block"><div class="mc-name">Trustible</div><div class="mc-founders">Gerald Kierce, Andrew Gamino-Cheong</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">Dec 2022 · Pre-seed</span></div></div>
+          <div class="mc-meta">Arlington, VA · AI Governance · GovTech</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">AI governance platform centralizing AI inventory, risk management, and regulatory compliance for enterprises. Timely bet as AI regulation emerged globally.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Raised $4.6M (Jul 2025) bringing total to $6.35M; launched joint initiative with Leidos for AI governance at national security scale (Feb 2026)</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>Growing rapidly as EU AI Act and US executive orders drive enterprise demand for AI compliance tooling</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/neurophos.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">NP</span></div><div class="mc-name-block"><div class="mc-name">Neurophos</div><div class="mc-founders">Patrick Bowen, Andrew Traverso, Tom Driscoll</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">Oct 2025 · Seed</span></div></div>
+          <div class="mc-meta">Austin, TX · Deep Tech · AI Chips · Photonics</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Photonic AI chip company building optical processing units that deliver GPU-level performance at a fraction of the energy. Duke University spinout tackling the compute wall constraining AI infrastructure.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Raised $110M Series A (Jan 2026) led by Gates Frontier with Microsoft M12, Aramco Ventures, and Bosch Ventures; total $118M</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>OPU claims 100x performance vs leading GPUs; real-world pilot with Terakraft planned for 2027</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/ndovu.co" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">ND</span></div><div class="mc-name-block"><div class="mc-name">Ndovu</div><div class="mc-founders">Radhika Bhachu, Ro Nyangeri</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">Nov 2020 · Pre-seed</span></div></div>
+          <div class="mc-meta">Nairobi, Kenya · Fintech · Wealthtech</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Micro-investment access to global financial markets for everyday African consumers. Radical democratization of wealth-building tools in Kenya.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Launched CMA-approved Money Market Fund (Oct 2024); 200k+ users, $10.5M AUM</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>Fund management licenses in Kenya, Rwanda and Uganda; first fintech with Virtual Assets Provider license in Kenya (Nov 2025)</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/termii.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">TM</span></div><div class="mc-name-block"><div class="mc-name">Termii <span class="yc-dot">Y</span></div><div class="mc-founders">Emmanuel Gbolade, Ayomide Awe</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">Aug 2020 · Pre-seed</span></div></div>
+          <div class="mc-meta">Lagos, Nigeria · Communications · CPaaS</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Multi-channel communications infrastructure for African businesses. Critical API layer serving 500+ fintechs before this market was crowded.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Ranked #10 on FT Africa's Fastest-Growing Companies 2025; #1 in Media &amp; Telecoms category</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>Raised $3.65M Series A (Jun 2023); 2 billion customer interactions annually across 5 countries</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/bigwolfgames.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">BW</span></div><div class="mc-name-block"><div class="mc-name">Big Wolf <span class="yc-dot">Y</span></div><div class="mc-founders">Akintunde Maiyegun</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">Jan 2021 · Seed</span></div></div>
+          <div class="mc-meta">Bay Area, CA · Gaming · Culture · Publishing</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Game developer and publisher building culturally resonant content for African and diaspora audiences. Early bet on African gaming reaching global markets.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Continuing to develop and publish titles; Africa gaming market projected to reach $3B by 2026</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/sugarapp.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">SG</span></div><div class="mc-name-block"><div class="mc-name">Sugar</div><div class="mc-founders">Fatima Dicko</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">Jan 2021 · Seed</span></div></div>
+          <div class="mc-meta">Bay Area, CA · PropTech · Real Estate</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Residential tech for cities. Mali-born founder with Columbia + Stanford background tackling US housing friction.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Raised $2.5M Seed (2021); named to Forbes Next 1000 and Inc. 18 Inspiring Women to Watch</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/kyshi.co" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">KY</span></div><div class="mc-name-block"><div class="mc-name">Kyshi</div><div class="mc-founders">Ayo Akindele</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Nigeria / UK · Fintech · Remittances</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Neo-bank for Africans enabling cross-border transfers between the UK, US and 20+ African countries. P2P money swap model with zero setup fees.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Operating as diaspora-focused neobank; cross-border payment flows projected to reach $290T by 2030</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/fluna.co" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">FL</span></div><div class="mc-name-block"><div class="mc-name">Fluna</div><div class="mc-founders">Miguel Sousa Dias</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Africa · Trade Finance · Agri</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">B2B trade finance platform connecting African agricultural exporters to global markets. Addresses the chronic gap in export financing for African producers.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Facilitated over $40M in trade in 2024</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>Launched Fluna Academy in 2025 for African exporters</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/cariina.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">CA</span></div><div class="mc-name-block"><div class="mc-name">Cariina</div><div class="mc-founders">Pedro De Almeida, Matthew Barron</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Boston, MA · EdTech · K–12 Ops</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Unified management platform for K–12 schools covering transportation, HR, attendance, and extracurriculars in one system.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Raised Series A (Aug 2025); 22-person team serving charter schools across the US</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/blueloop.co" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">FX</span></div><div class="mc-name-block"><div class="mc-name">Flux (Blueloop) <span class="yc-dot">Y</span></div><div class="mc-founders">Ben Eluan, Osezele Orukpe, Israel Akintunde</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">May 2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Lagos, Nigeria · Fintech · Payments</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Cross-border payments combining crypto wallet and digital banking for Africa. First African dropout founders in YC (W21).</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>YC W21; processed $460k+ in first two months. Pivoted to merchant payment rails after CBN crypto ban</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/lenco.co" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">LC</span></div><div class="mc-name-block"><div class="mc-name">Lenco <span class="yc-dot">Y</span></div><div class="mc-founders">Andrew Airelobhegbe, Godstime Asine, Praise Osagie</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">2022 · Pre-seed</span></div></div>
+          <div class="mc-meta">Lagos, Nigeria · Fintech · Neobank · B2B</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Pan-African multi-currency digital bank for businesses — pay vendors, manage expenses, access capital across borders.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>YC W22; raised $2.62M from 20 investors. 48-person team serving Africa's 50M+ businesses</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="active">
+          <div class="mc-top"><div class="mc-logo" style="display:flex;align-items:center;justify-content:center;background:white;border:0.5px solid var(--rule);border-radius:5px;width:44px;height:32px;"><span class="mc-logo-initials">SP</span></div><div class="mc-name-block"><div class="mc-name">Suss Productions</div><div class="mc-founders">Sayo Oke</div></div><div class="mc-right"><span class="badge b-active">Active</span><span class="mc-year">2021 · Film</span></div></div>
+          <div class="mc-meta">Lagos, Nigeria · Film · Creative Economy</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Lagos-based film production company. Investment in their feature film Beyond the Aisle — backing African creative economy and narrative infrastructure.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Produced Beyond the Aisle — part of a growing wave of Nigerian features finding diaspora distribution</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="exited">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/swaymedical.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">SW</span></div><div class="mc-name-block"><div class="mc-name">Sway Medical</div><div class="mc-founders">Chase Curtiss, Alex Gandall</div></div><div class="mc-right"><span class="badge b-exited">Exited</span><span class="mc-year">Nov 2020 · Pre-seed</span></div></div>
+          <div class="mc-meta">Tulsa, OK · Healthtech · MedDevice</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">FDA-cleared mobile app for concussion detection and neurological monitoring for athletic trainers and clinicians.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Acquired by Healthy Roster (late 2025); 60+ published research papers</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="exited">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/spacex.com" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">SX</span></div><div class="mc-name-block"><div class="mc-name">SpaceX</div><div class="mc-founders">Elon Musk</div></div><div class="mc-right"><span class="badge b-exited">Exited</span><span class="mc-year">Oct 2022 · Growth</span></div></div>
+          <div class="mc-meta">Hawthorne, CA · Aerospace · Infrastructure</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Space exploration and Starlink satellite internet. Aligned with our long-horizon thesis — data access and connectivity at a planetary scale.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Valued at ~$350B late 2025; Starlink serves 4M+ customers globally</div></div><div class="mc-news-item"><div class="mc-news-dot"></div><div>Exited via secondary sale Feb 2026</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="closed">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/torche.co" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">TC</span></div><div class="mc-name-block"><div class="mc-name">Torche</div><div class="mc-founders">Sisan Dorsu</div></div><div class="mc-right"><span class="badge b-closed">Closed</span><span class="mc-year">2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Lagos, Nigeria · Fintech · Biometrics</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Biometric payments for Africa — transactions via face and fingerprint, removing card and PIN barriers for the unbanked. Female-led; Techstars NYC 2022 cohort.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Operations ceased; built proprietary biometric POS infrastructure modelled on India's Aadhaar system</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="closed">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/lazerpay.io" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">LP</span></div><div class="mc-name-block"><div class="mc-name">LazerPay</div><div class="mc-founders">Emmanuel Njoku, Abdulfatai Suleiman, Prosper Ubi</div></div><div class="mc-right"><span class="badge b-closed">Closed</span><span class="mc-year">2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Nigeria · Fintech · Crypto</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Crypto payment infrastructure for African businesses. Early mover in stablecoin-based payments for merchants across the continent.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Operations ceased 2023; regulatory headwinds and crypto market contraction made the path difficult in Nigeria</div></div></div>
+        </div>
+
+        <div class="mobile-card" data-status="closed">
+          <div class="mc-top"><div class="mc-logo"><img src="https://logo.clearbit.com/knomad.io" onerror="this.style.display='none';this.parentNode.querySelector('.mc-logo-initials').style.display='block'" alt=""><span class="mc-logo-initials" style="display:none">KN</span></div><div class="mc-name-block"><div class="mc-name">Knomad</div><div class="mc-founders">Vincent McPhillip</div></div><div class="mc-right"><span class="badge b-closed">Closed</span><span class="mc-year">2021 · Pre-seed</span></div></div>
+          <div class="mc-meta">Africa / US · Future of Work · Talent</div>
+          <div class="mc-label">Why we invested</div><div class="mc-desc">Professional networking and talent marketplace for African knowledge workers. Bet on data-rich professional identity in emerging markets.</div>
+          <div class="mc-label">Recent news</div><div class="mc-news"><div class="mc-news-item"><div class="mc-news-dot"></div><div>Operations wound down</div></div></div>
+        </div>
+
+      </div><!-- /mobile-cards -->
+
     </section>
 
     <!-- MISC -->
@@ -917,14 +1114,14 @@
         <div class="misc-col">
           <h4>Developing</h4>
           <ul>
-            <li>Horus Labs<br><span style="font-size:11px; color:var(--ink-3);">Raymond Ononiwu · AI Infra and Software · Kigali, Rwanda</span></li>
+            <li>Horus Labs<br><span style="font-size:11px; color:var(--ink-3);">Raymond Ononiwu · Kigali, Rwanda · AI Infrastructure &amp; Software</span></li>
           </ul>
         </div>
         <div class="misc-col">
           <h4>Advising</h4>
           <ul>
-            <li>Eskwai (fmr. Kwame.ai)<br><span style="font-size:11px; color:var(--ink-3);">George Boateng, Victor Kumbol · Bern, Switzerland</span></li>
-            <li>Diligence Africa<br><span style="font-size:11px; color:var(--ink-3);">Dami Thompson · Bay Area, CA</span></li>
+            <li>Eskwai (fmr. Kwame.ai)<br><span style="font-size:11px; color:var(--ink-3);">George Boateng &amp; Victor Kumbol · Bern, Switzerland</span></li>
+            <li>Diligence Africa<br><span style="font-size:11px; color:var(--ink-3);">Damilola Thompson · Bay Area, CA</span></li>
           </ul>
         </div>
         <div class="misc-col">
@@ -945,7 +1142,7 @@
 <footer id="contact">
   <div class="page-wrap">
     <div class="footer-inner">
-      <p class="disclaimer">MStreet Ventures is a syndicate of private individual investors. We are not a licensed investment advisor or registered fund. Co-investments have included institutional partners such as TechStars, Future Africa, 4DX Ventures, and Oui Capital. Nothing on this page constitutes an offer or solicitation to invest. Portfolio information is provided for reference and may be updated as companies evolve.</p>
+      <p class="disclaimer">MStreet Ventures is a syndicate of private individual investors. We are not a licensed investment advisor or registered fund. Co-investments have included institutional partners such as TechStars, Future Africa, 4DX Ventures, Oui Capital, and V8 Capital. Nothing on this page constitutes an offer or solicitation to invest. Portfolio information is provided for reference and may be updated as companies evolve.</p>
       <div class="contact-block">
         <strong style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:4px">Get in touch</strong>
         <a href="mailto:bunmi@mstreev.com">bunmi@mstreev.com</a><br>
@@ -959,13 +1156,13 @@
 function filterTable(status, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  // Desktop table rows
   document.querySelectorAll('.inv-table tbody tr').forEach(row => {
-    if (status === 'all') {
-      row.classList.remove('hidden');
-    } else {
-      const s = row.dataset.status;
-      row.classList.toggle('hidden', s !== status);
-    }
+    row.classList.toggle('hidden', status !== 'all' && row.dataset.status !== status);
+  });
+  // Mobile cards
+  document.querySelectorAll('.mobile-card').forEach(card => {
+    card.classList.toggle('hidden', status !== 'all' && card.dataset.status !== status);
   });
 }
 </script>
